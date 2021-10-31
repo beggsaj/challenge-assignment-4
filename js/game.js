@@ -12,7 +12,7 @@ let questionCounter = 0
 
 let questions = [
     {
-        question: 'What is 2 + 2?',
+        question: 'What is Javascript?',
         choice1: '2',
         choice2: '3',
         choice3: '4',
