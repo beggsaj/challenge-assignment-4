@@ -1,3 +1,5 @@
+/* styling for all pages begins */
+
 body {
     background-color: tan;
 }
@@ -74,6 +76,10 @@ h1 {
     transform: none;
 }
 
+/* styling for all pages ends */
+
+/* styling for end page begins */
+
 #highscore-btn {
     background: linear-gradient(90deg, rgb(165,42,42) 0%, rgb(165,42,42) 100%);
 }
@@ -119,6 +125,10 @@ input::placeholder {
     border: none;
 }
 
+/* styling for end page ends */
+
+/* styling for highscore page begins */
+
 #highScoresList {
     list-style: none;
     margin-bottom: 4rem;
@@ -128,6 +138,8 @@ input::placeholder {
     font-size: 2.8rem;
     margin-bottom: 0.5rem;
 }
+
+/* styling for highscore page ends */
 
 /* game styling begins */
 

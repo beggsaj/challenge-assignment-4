@@ -1,9 +1,12 @@
-const question = document.querySelector('#question');
-const choices = Array.from(document.querySelectorAll('.choice-text'));
-const progressText = document.querySelector('#progressText');
-const scoreText = document.querySelector('#score');
-const progressBarFull = document.querySelector('#progressBarFull');
-var thirtySeconds = 60 * .5;
+var question = document.querySelector('#question');
+var choices = Array.from(document.querySelectorAll('.choice-text'));
+var progressText = document.querySelector('#progressText');
+var scoreText = document.querySelector('#score');
+var progressBarFull = document.querySelector('#progressBarFull');
+var timerText = 59;
+var timeEl = document.querySelector('#time');
+var lostTime = 10;
+
 
 let currentQuestion = {}
 let acceptingAnswers = true
@@ -86,8 +89,8 @@ choices.forEach(choice => {
         if (!acceptingAnswers) return
 
         acceptingAnswers = false
-        const selectedChoice = e.target
-        const selectedAnswer = selectedChoice.dataset['number']
+        var selectedChoice = e.target
+        var selectedAnswer = selectedChoice.dataset['number']
 
         let classToApply = selectedAnswer == currentQuestion.answer ? 'correct' : 'incorrect'
 
@@ -96,7 +99,11 @@ choices.forEach(choice => {
         }
 
         if (classToApply === 'incorrect') {
-            decrementScore(SCORE_POINTS)
+            decrementScore(SCORE_POINTS);
+            decrementTime(lostTime);
+            //timerText = timerText - 10;
+            //timeEl.setAttribute("value", );
+            //console.log('timerText is' + timerText)
         }
 
         selectedChoice.parentElement.classList.add(classToApply)
@@ -119,21 +126,21 @@ decrementScore = num => {
     scoreText.innerText = score
 }
 
-//decrementTime = timer => {
-    //time -= timer
-    //timeText.innerText = time
-//}
+decrementTime = num => {
+    timeEl -= num
+    timerText.innerText = timeEl
+}
 
 startGame()
 
 function startTimer(duration, display) {
     var timer = duration,
-        minutes, seconds;
+        seconds;
     setInterval(function () {
-        minutes = parseInt(timer / 60, 10);
+        //minutes = parseInt(timer / 60, 10);
         seconds = parseInt(timer % 60, 10);
 
-        display.textContent = minutes + ":" + seconds;
+        display.textContent = ":" + seconds;
 
         if (--timer < 0) {
             return window.location.assign("./end.html"),
@@ -144,8 +151,11 @@ function startTimer(duration, display) {
 }
 
 window.onload = function () {
-    display = document.querySelector('#time');
-    startTimer(thirtySeconds, display);
+    display = timeEl;
+    startTimer(timerText, display);
 };
+
+
+
 
 
