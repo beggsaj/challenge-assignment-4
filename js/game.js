@@ -6,6 +6,7 @@ var progressBarFull = document.querySelector('#progressBarFull');
 var timerText = 59;
 var timeEl = document.querySelector('#time');
 var lostTime = 10;
+var timer = 0;
 
 
 let currentQuestion = {}
@@ -16,35 +17,35 @@ let availableQuestions = []
 
 
 let questions = [{
-        question: 'What is 2 + 3?',
-        choice1: '2',
-        choice2: '3',
-        choice3: '4',
-        choice4: '5',
+        question: 'Inside which HTML element do we put the JavaScript?',
+        choice1: '<scripting>',
+        choice2: '<js>',
+        choice3: '<javascript>',
+        choice4: '<script>',
         answer: 4,
     },
     {
-        question: 'What is 3 + 5?',
-        choice1: '2',
-        choice2: '8',
-        choice3: '4',
-        choice4: '5',
+        question: 'How do you create a function in JavaScript?',
+        choice1: 'function:myFunction()',
+        choice2: 'function myFunction()',
+        choice3: 'function = myFunction()',
+        choice4: 'function = myFunction(:)',
         answer: 2,
     },
     {
-        question: 'What is 4 + 3?',
-        choice1: '2',
-        choice2: '3',
-        choice3: '7',
-        choice4: '5',
+        question: 'How to write an IF statement in JavaScript?',
+        choice1: 'if i == 3 then',
+        choice2: 'if i = 3',
+        choice3: 'if (i == 3)',
+        choice4: 'if i = 3 then',
         answer: 3,
     },
     {
-        question: 'What is 2 + 2?',
-        choice1: '2',
-        choice2: '3',
-        choice3: '4',
-        choice4: '5',
+        question: 'How can you add a comment in a JavaScript?',
+        choice1: 'This is a comment',
+        choice2: '<!--This is a comment-->',
+        choice3: '//This is a comment',
+        choice4: '*comment*',
         answer: 3,
     },
 ]
@@ -100,10 +101,7 @@ choices.forEach(choice => {
 
         if (classToApply === 'incorrect') {
             decrementScore(SCORE_POINTS);
-            decrementTime(lostTime);
-            //timerText = timerText - 10;
-            //timeEl.setAttribute("value", );
-            //console.log('timerText is' + timerText)
+            timer -= 10;
         }
 
         selectedChoice.parentElement.classList.add(classToApply)
@@ -126,16 +124,12 @@ decrementScore = num => {
     scoreText.innerText = score
 }
 
-decrementTime = num => {
-    timeEl -= num
-    timerText.innerText = timeEl
-}
 
 startGame()
 
 function startTimer(duration, display) {
-    var timer = duration,
-        seconds;
+    timer = duration;
+    var seconds;
     setInterval(function () {
         //minutes = parseInt(timer / 60, 10);
         seconds = parseInt(timer % 60, 10);
