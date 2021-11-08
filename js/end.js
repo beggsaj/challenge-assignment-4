@@ -13,7 +13,7 @@ var MAX_HIGH_SCORES = 5
 
 finalScore.innerText = mostRecentScore
 
-//allowing end user to save their score
+//allowing end user to save their score using local storage
 
 username.addEventListener('keyup', () => {
     saveScoreBtn.disabled = !username.value

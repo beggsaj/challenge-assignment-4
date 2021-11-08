@@ -1,3 +1,5 @@
+//establishing global variables 
+
 var question = document.querySelector('#question');
 var choices = Array.from(document.querySelectorAll('.choice-text'));
 var progressText = document.querySelector('#progressText');
@@ -15,6 +17,7 @@ let score = 0
 let questionCounter = 0
 let availableQuestions = []
 
+//quiz questions defined
 
 let questions = [{
         question: 'Inside which HTML element do we put the JavaScript?',
@@ -53,12 +56,16 @@ let questions = [{
 const SCORE_POINTS = 100
 const MAX_QUESTIONS = 4
 
+//function to start game
+
 startGame = () => {
     questionCounter = 0
     score = 0
     availableQuestions = [...questions]
     getNewQuestion()
 }
+
+//function to load new questions to keep the game going
 
 getNewQuestion = () => {
     if (availableQuestions.length === 0 || questionCounter > MAX_QUESTIONS) {
@@ -84,6 +91,8 @@ getNewQuestion = () => {
 
     acceptingAnswers = true
 }
+
+//calculate whether or not the correct answer is selected and how to handle (i.e increase score, decrease time, etc.)
 
 choices.forEach(choice => {
     choice.addEventListener('click', e => {
@@ -114,6 +123,8 @@ choices.forEach(choice => {
     })
 })
 
+//score calculations
+
 incrementScore = num => {
     score += num
     scoreText.innerText = score
@@ -126,6 +137,8 @@ decrementScore = num => {
 
 
 startGame()
+
+//timer function setup and defintion 
 
 function startTimer(duration, display) {
     timer = duration;
@@ -143,6 +156,9 @@ function startTimer(duration, display) {
 
     }, 1000);
 }
+
+
+//start the timer when the page loads
 
 window.onload = function () {
     display = timeEl;
